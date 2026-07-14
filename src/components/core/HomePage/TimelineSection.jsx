@@ -6,28 +6,27 @@ import Logo3 from "../../../assets/TimeLineLogo/Logo3.svg";
 import Logo4 from "../../../assets/TimeLineLogo/Logo4.svg";
 
 const TimeLine = [
-    {
-      Logo: Logo1,
-      Heading: "Leadership",
-      Description: "Fully committed to the success company",
-    },
-    {
-      Logo: Logo2,
-      Heading: "Responsibility",
-      Description: "Students will always be our top priority",
-    },
-    {
-      Logo: Logo3,
-      Heading: "Flexibility",
-      Description: "The ability to switch is an important skills",
-    },
-    {
-      Logo: Logo4,
-      Heading: "Solve the problem",
-      Description: "Code your way to a solution",
-    },
-  ];
-
+  {
+    Logo: Logo1,
+    Heading: "Leadership",
+    Description: "Fully committed to the success company",
+  },
+  {
+    Logo: Logo2,
+    Heading: "Responsibility",
+    Description: "Students will always be our top priority",
+  },
+  {
+    Logo: Logo3,
+    Heading: "Flexibility",
+    Description: "The ability to switch is an important skills",
+  },
+  {
+    Logo: Logo4,
+    Heading: "Solve the problem",
+    Description: "Code your way to a solution",
+  },
+];
 
 const TimelineSection = () => {
   return (
@@ -38,12 +37,14 @@ const TimelineSection = () => {
             return (
               <div className="flex flex-col lg:gap-3" key={i}>
                 <div className="flex gap-6" key={i}>
-                  <div className="w-[52px] h-[52px] bg-white rounded-full flex justify-center items-center shadow-[#00000012] shadow-[0_0_62px_0]">
+                  <div className="w-[52px] h-[52px] bg-white/10 backdrop-blur-md border border-white/10 rounded-full flex justify-center items-center shadow-purple-glow">
                     <img src={ele.Logo} alt="" />
                   </div>
                   <div>
                     <h2 className="font-semibold text-[18px]">{ele.Heading}</h2>
-                    <p className="text-base">{ele.Description}</p>
+                    <p className="text-base text-richblack-300">
+                      {ele.Description}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -55,12 +56,12 @@ const TimelineSection = () => {
             );
           })}
         </div>
-        <div className="relative w-fit h-fit shadow-blue-200 shadow-[0px_0px_30px_0px]">
-          <div className="absolute lg:left-[50%] lg:bottom-0 lg:translate-x-[-50%] lg:translate-y-[50%] bg-caribbeangreen-700 flex lg:flex-row flex-col text-white uppercase py-5 gap-4 lg:gap-0 lg:py-10 ">
+        <div className="relative w-fit h-fit shadow-purple-glow">
+          <div className="absolute lg:left-[50%] lg:bottom-0 lg:translate-x-[-50%] lg:translate-y-[50%] bg-brand-gradient flex lg:flex-row flex-col text-white uppercase py-5 gap-4 lg:gap-0 lg:py-10 rounded-md">
             {/* Section 1 */}
-            <div className="flex gap-5 items-center lg:border-r border-caribbeangreen-300 px-7 lg:px-14">
+            <div className="flex gap-5 items-center lg:border-r border-white/30 px-7 lg:px-14">
               <h1 className="text-3xl font-bold w-[75px]">10</h1>
-              <h1 className="text-caribbeangreen-300 text-sm w-[75px]">
+              <h1 className="text-purple-5 text-sm w-[75px]">
                 Years experiences
               </h1>
             </div>
@@ -68,7 +69,7 @@ const TimelineSection = () => {
             {/* Section 2 */}
             <div className="flex gap-5 items-center lg:px-14 px-7">
               <h1 className="text-3xl font-bold w-[75px]">250</h1>
-              <h1 className="text-caribbeangreen-300 text-sm w-[75px]">
+              <h1 className="text-purple-5 text-sm w-[75px]">
                 types of courses
               </h1>
             </div>
@@ -77,7 +78,7 @@ const TimelineSection = () => {
           <img
             src={TimeLineImage}
             alt="timelineImage"
-            className="shadow-white shadow-[20px_20px_0px_0px] object-cover h-[400px] lg:h-fit"
+            className="rounded-2xl shadow-purple-400/40 shadow-[20px_20px_0px_0px] object-cover h-[400px] lg:h-fit"
           />
         </div>
       </div>

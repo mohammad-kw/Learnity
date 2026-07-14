@@ -1,51 +1,65 @@
-import React from "react"
-import FoundingStory from "../assets/Images/FoundingStory.png"
-import BannerImage1 from "../assets/Images/aboutus1.webp"
-import BannerImage2 from "../assets/Images/aboutus2.webp"
-import BannerImage3 from "../assets/Images/aboutus3.webp"
-import ContactFormSection from "../components/core/AboutPage/ContactFormSection"
-import LearningGrid from "../components/core/AboutPage/LearningGrid"
-import Quote from "../components/core/AboutPage/Quote"
-import StatsComponenet from "../components/core/AboutPage/Stats"
-import HighlightText from "../components/core/HomePage/HighlightText"
-import ReviewSlider from "../components/common/ReviewSlider"
-import Footer from "../components/common/Footer"
+import React from "react";
+import FoundingStory from "../assets/Images/FoundingStory.png";
+import BannerImage1 from "../assets/Images/aboutus1.webp";
+import BannerImage2 from "../assets/Images/aboutus2.webp";
+import BannerImage3 from "../assets/Images/aboutus3.webp";
+import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
+import LearningGrid from "../components/core/AboutPage/LearningGrid";
+import Quote from "../components/core/AboutPage/Quote";
+import StatsComponenet from "../components/core/AboutPage/Stats";
+import HighlightText from "../components/core/HomePage/HighlightText";
+import Footer from "../components/common/Footer";
 const About = () => {
   return (
     <div>
+      {/* Hero */}
       <section className="bg-richblack-700">
-        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
-          <header className="mx-auto py-20 text-4xl font-semibold lg:w-[70%]">
+        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col text-center text-white">
+          <header className="mx-auto pt-16 pb-40 text-3xl font-semibold sm:text-4xl lg:w-[70%] lg:pt-20 lg:pb-48">
             Driving Innovation in Online Education for a
             <HighlightText text={"Brighter Future"} />
-            <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
-              Studynotion is at the forefront of driving innovation in online
+            <p className="mx-auto mt-4 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
+              Learnity is at the forefront of driving innovation in online
               education. We're passionate about creating a brighter future by
               offering cutting-edge courses, leveraging emerging technologies,
               and nurturing a vibrant learning community.
             </p>
           </header>
-          <div className="sm:h-[70px] lg:h-[150px]"></div>
-          <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
-            <img src={BannerImage1} alt="" />
-            <img src={BannerImage2} alt="" />
-            <img src={BannerImage3} alt="" />
+
+          {/* Banner images — overlap the section below */}
+          <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[50%] grid-cols-3 gap-3 lg:gap-5">
+            <img
+              src={BannerImage1}
+              alt=""
+              className="rounded-lg shadow-purple-glow"
+            />
+            <img
+              src={BannerImage2}
+              alt=""
+              className="rounded-lg shadow-purple-glow"
+            />
+            <img
+              src={BannerImage3}
+              alt=""
+              className="rounded-lg shadow-purple-glow"
+            />
           </div>
         </div>
       </section>
 
+      {/* Quote — top padding accounts for the overlapping images */}
       <section className="border-b border-richblack-700">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
-          <div className="h-[100px] "></div>
+        <div className="mx-auto w-11/12 max-w-maxContent pt-32 pb-16 text-richblack-500 lg:pt-40 lg:pb-20">
           <Quote />
         </div>
       </section>
 
+      {/* Founding story / Vision / Mission */}
       <section>
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-richblack-500">
-          <div className="flex flex-col items-center gap-5 lg:flex-row justify-between">
-            <div className="my-24 flex lg:w-[50%] flex-col gap-10">
-              <h1 className="bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col gap-16 py-16 text-richblack-500 lg:gap-20 lg:py-24">
+          <div className="flex flex-col items-center gap-10 lg:flex-row lg:justify-between">
+            <div className="flex flex-col gap-5 lg:w-[50%]">
+              <h1 className="gradient-text text-3xl font-semibold sm:text-4xl lg:w-[70%]">
                 Our Founding Story
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -66,17 +80,18 @@ const About = () => {
               </p>
             </div>
 
-            <div>
+            <div className="lg:w-[45%]">
               <img
                 src={FoundingStory}
                 alt=""
-                className="shadow-[0_0_20px_0] shadow-[#FC6767]"
+                className="w-full rounded-lg shadow-purple-glow"
               />
             </div>
           </div>
-          <div className="flex flex-col items-center lg:gap-5 lg:flex-row justify-between">
-            <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] ">
+
+          <div className="flex flex-col items-start gap-10 lg:flex-row lg:justify-between">
+            <div className="flex flex-col gap-5 lg:w-[45%]">
+              <h1 className="gradient-text text-3xl font-semibold sm:text-4xl lg:w-[70%]">
                 Our Vision
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
@@ -88,36 +103,35 @@ const About = () => {
                 dynamic and interactive learning experience.
               </p>
             </div>
-            <div className="my-24 flex lg:w-[40%] flex-col gap-10">
-              <h1 className="bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] ">
-              Our Mission
+            <div className="flex flex-col gap-5 lg:w-[45%]">
+              <h1 className="gradient-text text-3xl font-semibold sm:text-4xl lg:w-[70%]">
+                Our Mission
               </h1>
               <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
-              Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.
+                Our mission goes beyond just delivering courses online. We
+                wanted to create a vibrant community of learners, where
+                individuals can connect, collaborate, and learn from one
+                another. We believe that knowledge thrives in an environment of
+                sharing and dialogue, and we foster this spirit of collaboration
+                through forums, live sessions, and networking opportunities.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Stats */}
       <StatsComponenet />
-      <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
+
+      {/* Learning grid + contact */}
+      <section className="mx-auto flex w-11/12 max-w-maxContent flex-col gap-16 py-16 text-white lg:gap-20 lg:py-24">
         <LearningGrid />
         <ContactFormSection />
       </section>
 
-      <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
-        {/* Reviws from Other Learner */}
-        <h1 className="text-center text-4xl  font-semibold mt-8">
-          Happy & Satisfied Learners!
-        </h1>
-        {/* <ReviewSlider /> */}
-        <ReviewSlider />
-      </div>
-      {/* <Footer /> */}
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;

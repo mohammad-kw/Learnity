@@ -1,75 +1,23 @@
+const { baseLayout } = require("./_layout");
+
 exports.passwordUpdated = (email, name) => {
-	return `<!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>Password Update Confirmation</title>
-        <style>
-            body {
-                background-color: #ffffff;
-                font-family: Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.4;
-                color: #333333;
-                margin: 0;
-                padding: 0;
-            }
-    
-    
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-    
-            .logo {
-                max-width: 200px;
-                margin-bottom: 20px;
-            }
-    
-            .message {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-    
-            .body {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-    
-            .support {
-                font-size: 14px;
-                color: #999999;
-                margin-top: 20px;
-            }
-    
-            .highlight {
-                font-weight: bold;
-            }
-        </style>
-    
-    </head>
-    
-    <body>
-        <div class="container">
-            <a href="https://studynotion-frontend-six-henna.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
-            <div class="message">Password Update Confirmation</div>
-            <div class="body">
-                <p>Hey ${name},</p>
-                <p>Your password has been successfully updated for the email <span class="highlight">${email}</span>.
-                </p>
-                <p>If you did not request this password change, please contact us immediately to secure your account.</p>
-            </div>
-            <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
-                at
-                <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!
-            </div>
-        </div>
-    </body>
-    
-    </html>`;
+  const body = `
+    <p style="margin:0 0 16px; font-size:15px; line-height:1.6; color:#a3a3c2;">
+      Hi <strong style="color:#e2e8f0;">${name}</strong>,
+    </p>
+    <p style="margin:0 0 16px; font-size:15px; line-height:1.6; color:#a3a3c2;">
+      Your Learnity password was successfully updated for
+      <span style="color:#c4b5fd; font-weight:600;">${email}</span>.
+    </p>
+    <div style="margin:8px 0 0; padding:14px 18px; background:rgba(234,179,8,0.1); border:1px solid rgba(234,179,8,0.3); border-radius:10px;">
+      <p style="margin:0; font-size:14px; line-height:1.6; color:#fde68a;">
+        ⚠️ If you didn't make this change, please contact us immediately to secure your account.
+      </p>
+    </div>`;
+
+  return baseLayout({
+    title: "Password Update Confirmation",
+    heading: "Password updated 🔒",
+    body,
+  });
 };

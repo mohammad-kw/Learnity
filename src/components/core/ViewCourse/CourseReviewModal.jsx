@@ -1,34 +1,34 @@
-import { useEffect } from "react"
-import { useForm } from "react-hook-form"
-import { RxCross2 } from "react-icons/rx"
-import ReactStars from "react-rating-stars-component"
-import { useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { RxCross2 } from "react-icons/rx";
+import ReactStars from "react-rating-stars-component";
+import { useSelector } from "react-redux";
 
-import { createRating } from "../../../services/operations/courseDetailsAPI"
-import IconBtn from "../../common/IconBtn"
+import { createRating } from "../../../services/operations/courseDetailsAPI";
+import IconBtn from "../../common/IconBtn";
 
 export default function CourseReviewModal({ setReviewModal }) {
-  const { user } = useSelector((state) => state.profile)
-  const { token } = useSelector((state) => state.auth)
-  const { courseEntireData } = useSelector((state) => state.viewCourse)
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const { courseEntireData } = useSelector((state) => state.viewCourse);
 
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   useEffect(() => {
-    setValue("courseExperience", "")
-    setValue("courseRating", 0)
+    setValue("courseExperience", "");
+    setValue("courseRating", 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const ratingChanged = (newRating) => {
     // console.log(newRating)
-    setValue("courseRating", newRating)
-  }
+    setValue("courseRating", newRating);
+  };
 
   const onSubmit = async (data) => {
     await createRating(
@@ -37,16 +37,16 @@ export default function CourseReviewModal({ setReviewModal }) {
         rating: data.courseRating,
         review: data.courseExperience,
       },
-      token
-    )
-    setReviewModal(false)
-  }
+      token,
+    );
+    setReviewModal(false);
+  };
 
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
+      <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-purple-200/30 bg-richblack-800/90 backdrop-blur-xl shadow-purple-glow">
         {/* Modal Header */}
-        <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
+        <div className="flex items-center justify-between rounded-t-lg bg-brand-gradient p-5">
           <p className="text-xl font-semibold text-richblack-5">Add Review</p>
           <button onClick={() => setReviewModal(false)}>
             <RxCross2 className="text-2xl text-richblack-5" />
@@ -56,8 +56,15 @@ export default function CourseReviewModal({ setReviewModal }) {
         <div className="p-6">
           <div className="flex items-center justify-center gap-x-4">
             <img
-              src={user?.image}
+              src={
+                user?.image ||
+                `https://api.dicebear.com/5.x/initials/svg?seed=${user?.firstName} ${user?.lastName}`
+              }
               alt={user?.firstName + "profile"}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = `https://api.dicebear.com/5.x/initials/svg?seed=${user?.firstName} ${user?.lastName}`;
+              }}
               className="aspect-square w-[50px] rounded-full object-cover"
             />
             <div className="">
@@ -109,5 +116,5 @@ export default function CourseReviewModal({ setReviewModal }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

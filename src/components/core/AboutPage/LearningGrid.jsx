@@ -8,7 +8,7 @@ const LearningGridArray = [
     heading: "World-Class Learning for",
     highlightText: "Anyone, Anywhere",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
+      "Learnity partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
     BtnText: "Learn More",
     BtnLink: "/",
   },
@@ -28,19 +28,19 @@ const LearningGridArray = [
     order: 3,
     heading: "Certification",
     description:
-      "Studynotion provides industry-recognized certification to validate your new skills and enhance your career prospects.",
+      "Learnity provides industry-recognized certification to validate your new skills and enhance your career prospects.",
   },
   {
     order: 4,
     heading: `Rating "Auto-grading"`,
     description:
-      "Studynotion’s auto-grading feature provides instant, objective feedback to help learners assess their understanding and progress efficiently.",
+      "Learnity’s auto-grading feature provides instant, objective feedback to help learners assess their understanding and progress efficiently.",
   },
   {
     order: 5,
     heading: "Ready to Work",
     description:
-      "Studynotion equips learners with job-ready skills, preparing them to excel in the workforce.",
+      "Learnity equips learners with job-ready skills, preparing them to excel in the workforce.",
   },
 ];
 
@@ -49,12 +49,9 @@ const LearningGrid = () => {
     <div className="grid mx-auto w-full max-w-screen-xl grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12 p-4">
       {LearningGridArray.map((card, i) => {
         const isHighlightCard = card.order < 0;
-        const cardBgClass =
-          card.order % 2 === 1
-            ? "bg-richblack-600"
-            : card.order % 2 === 0
-            ? "bg-richblack-800"
-            : "bg-transparent";
+        const cardBgClass = isHighlightCard
+          ? "bg-transparent"
+          : "glass-card hover:shadow-purple-glow transition-shadow duration-300";
         const cardHeightClass = "h-[320px]";
         const colSpanClass = i === 0 ? "xl:col-span-2" : "";
         const colStartClass = card.order === 3 ? "xl:col-start-2" : "";

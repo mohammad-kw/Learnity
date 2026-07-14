@@ -2,3 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-glass;
+  }
+
+  .glass-card-strong {
+    @apply bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl shadow-glass;
+  }
+
+  /* Purple gradient text */
+  .gradient-text {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  /* Primary brand button */
+  .btn-brand {
+    @apply bg-brand-gradient text-white font-semibold rounded-xl px-6 py-3
+           shadow-purple-glow transition-all duration-300
+           hover:scale-105 hover:shadow-purple-glow active:scale-95;
+  }
+
+  /* Glass button */
+  .btn-glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/15 text-white
+           font-semibold rounded-xl px-6 py-3 transition-all duration-300
+           hover:bg-white/10 hover:border-purple-200/40;
+  }
+}
+
+/* Hidden scrollbars (scrolling still works, just no visible bar) */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/old Edge */
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome, Edge, Safari */
+}

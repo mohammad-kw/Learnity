@@ -4,7 +4,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
 import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
@@ -69,7 +68,7 @@ function SignupForm() {
 
     if (!isPasswordValid(password)) {
       toast.error(
-        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character"
+        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
       );
       return;
     }
@@ -117,11 +116,19 @@ function SignupForm() {
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
-          <label style={{position:"relative"}}>
+          <label style={{ position: "relative" }}>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
             </p>
-            <FaUser style={{color:"grey",position:"absolute",top:"calc(49%)",left:"2.85%",fontSize:"20px"}}/>
+            <FaUser
+              style={{
+                color: "grey",
+                position: "absolute",
+                top: "calc(49%)",
+                left: "2.85%",
+                fontSize: "20px",
+              }}
+            />
             <input
               required
               type="text"
@@ -130,16 +137,25 @@ function SignupForm() {
               onChange={handleOnChange}
               placeholder="Enter first name"
               style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)", paddingLeft:"35px"
+                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                paddingLeft: "35px",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
           </label>
-          <label style={{position:"relative"}}>
+          <label style={{ position: "relative" }}>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
-            <FaUser style={{color:"grey",position:"absolute",top:"calc(49%)",left:"2.85%",fontSize:"20px"}}/>
+            <FaUser
+              style={{
+                color: "grey",
+                position: "absolute",
+                top: "calc(49%)",
+                left: "2.85%",
+                fontSize: "20px",
+              }}
+            />
             <input
               required
               type="text"
@@ -148,17 +164,26 @@ function SignupForm() {
               onChange={handleOnChange}
               placeholder="Enter last name"
               style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",paddingLeft:"35px"
+                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                paddingLeft: "35px",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
           </label>
         </div>
-        <label className="w-full" style={{position:"relative"}}>
+        <label className="w-full" style={{ position: "relative" }}>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
             Email Address <sup className="text-pink-200">*</sup>
           </p>
-          <SiGmail style={{color:"grey",position:"absolute",top:"calc(53%)",left:"1.85%",fontSize:"20px"}}/>
+          <SiGmail
+            style={{
+              color: "grey",
+              position: "absolute",
+              top: "calc(53%)",
+              left: "1.85%",
+              fontSize: "20px",
+            }}
+          />
           <input
             required
             type="text"
@@ -167,17 +192,26 @@ function SignupForm() {
             onChange={handleOnChange}
             placeholder="Enter email address"
             style={{
-              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",paddingLeft:"35px"
+              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+              paddingLeft: "35px",
             }}
             className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
           />
         </label>
         <div className="flex gap-x-4">
-          <label className="relative" style={{position:"relative"}}>
+          <label className="relative" style={{ position: "relative" }}>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
-            <FaLock style={{color:"grey",position:"absolute",top:"calc(52%)",left:"4.85%",fontSize:"20px"}}/>
+            <FaLock
+              style={{
+                color: "grey",
+                position: "absolute",
+                top: "calc(52%)",
+                left: "4.85%",
+                fontSize: "20px",
+              }}
+            />
             <input
               required
               type={showPassword ? "text" : "password"}
@@ -187,7 +221,7 @@ function SignupForm() {
               placeholder="Enter Password"
               style={{
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-                paddingLeft:"35px"
+                paddingLeft: "35px",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
             />
@@ -202,11 +236,19 @@ function SignupForm() {
               )}
             </span>
           </label>
-          <label className="relative" style={{position:"relative"}}>
+          <label className="relative" style={{ position: "relative" }}>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
-            <FaLock style={{color:"grey",position:"absolute",top:"calc(52%)",left:"4.85%",fontSize:"20px"}}/>
+            <FaLock
+              style={{
+                color: "grey",
+                position: "absolute",
+                top: "calc(52%)",
+                left: "4.85%",
+                fontSize: "20px",
+              }}
+            />
             <input
               required
               type={showConfirmPassword ? "text" : "password"}
@@ -215,7 +257,8 @@ function SignupForm() {
               onChange={handleOnChange}
               placeholder="Confirm Password"
               style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",paddingLeft:"35px"
+                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                paddingLeft: "35px",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
             />
@@ -233,7 +276,7 @@ function SignupForm() {
         </div>
         <button
           type="submit"
-          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+          className="mt-6 rounded-xl bg-brand-gradient py-[10px] px-[12px] font-semibold text-white shadow-purple-glow transition-all duration-300 hover:scale-[1.02]"
         >
           Create Account
         </button>

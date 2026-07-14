@@ -1,190 +1,164 @@
 import React from "react";
-import { FooterLink2 } from "../../data/footer-links";
 import { Link } from "react-router-dom";
-import SendIcon from "@mui/icons-material/Send";
-import Logo from "../../assets/Logo/Logo-Full-Light.png";
 import {
   FaFacebook,
-  FaGoogle,
   FaYoutube,
   FaXTwitter,
   FaLinkedin,
   FaInstagram,
+  FaGithub,
 } from "react-icons/fa6";
+import { FiArrowRight } from "react-icons/fi";
 import "../../App.css";
 
-const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms", "Report"];
-const Resources = [
-  "Articles",
-  "Blog",
-  "Chart Sheet",
-  "Code challenges",
-  "Docs",
-  "Projects",
-  "Videos",
-  "Workspaces",
-];
-const Plans = ["Paid memberships", "For students", "Business solutions"];
-const Community = [
-  { name: "Forums", link: "forums" },
-  { name: "Chapters", link: "chapters" },
-  { name: "Events", link: "events" },
+const linkColumns = [
   {
-    name: "Contribute",
-    link: "https://github.com/Muskansahuincredible/StudyNotion-An-Online-Education-Platform",
-    external: true,
+    title: "Company",
+    links: [
+      { name: "About", to: "/about" },
+      { name: "Contact", to: "/contact" },
+      { name: "Careers", to: "/careers" },
+      { name: "Affiliates", to: "/affiliates" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      { name: "All Courses", to: "/courses" },
+      { name: "Catalog", to: "/catalog/web-development" },
+      { name: "Become an Instructor", to: "/signup" },
+      { name: "Help Center", to: "/help-center" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { name: "Privacy Policy", to: "/privacy-policy" },
+      { name: "Cookie Policy", to: "/cookie-policy" },
+      { name: "Terms", to: "/terms" },
+      { name: "Report", to: "/report" },
+    ],
+  },
+];
+
+const socials = [
+  { icon: <FaXTwitter />, link: "https://www.twitter.com", label: "Twitter" },
+  { icon: <FaLinkedin />, link: "https://www.linkedin.com", label: "LinkedIn" },
+  {
+    icon: <FaInstagram />,
+    link: "https://www.instagram.com",
+    label: "Instagram",
+  },
+  { icon: <FaYoutube />, link: "https://www.youtube.com", label: "YouTube" },
+  { icon: <FaFacebook />, link: "https://www.facebook.com", label: "Facebook" },
+  {
+    icon: <FaGithub />,
+    link: "https://github.com/mohammad-kw/Learnity",
+    label: "GitHub",
   },
 ];
 
 const Footer = () => {
   return (
-    <div className="bg-richblack-800">
-      <div className="flex flex-col lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblack-400 leading-6 mx-auto py-14">
-        <div className="w-full flex flex-col lg:flex-row pb-5 border-b border-richblack-700">
-          <div className="w-full lg:w-[50%] flex flex-wrap lg:flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
-            <div className="w-full lg:w-[30%] mb-7 lg:pl-0">
-              <img src={Logo} alt="" className="object-contain" />
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-4">Company</h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {["About", "Careers", "Affiliates"].map((ele, i) => (
-                  <div
-                    key={i}
-                    className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  >
-                    <Link to={`/${ele.toLowerCase()}`}>{ele}</Link>
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-3 mt-4 text-lg">
-                {[
-                  { icon: <FaFacebook />, link: "https://www.facebook.com" },
-                  { icon: <FaGoogle />, link: "https://projects.100xdevs.com" },
-                  { icon: <FaXTwitter />, link: "https://www.twitter.com" },
-                  { icon: <FaYoutube />, link: "https://www.youtube.com" },
-                  { icon: <FaLinkedin />, link: "https://www.linkedin.com" },
-                  { icon: <FaInstagram />, link: "https://www.instagram.com" },
-                ].map(({ icon, link }, i) => (
-                  <a
-                    key={i}
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-icon transition duration-300 hover:opacity-75 hover:bg-white"
-                  >
-                    {icon}
-                  </a>
-                ))}
-              </div>
-              <div className="container mt-4">
-                <h4 className="text-richblack-50" style={{ marginBottom: "0.1rem" }}>Email Us</h4>
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    id="message-input"
-                    placeholder="Type your message here"
-                    className="border-2 border-yellow-500 rounded px-2 py-1 w-40"
-                  />
-                  <a href="mailto:abc@gmail.com" className="flex items-center ml-2">
-                    <SendIcon className="text-yellow-500" style={{ fontSize: "26px", cursor: "pointer" }} />
-                  </a>
-                </div>
-              </div>
-            </div>
+    <footer className="relative overflow-hidden border-t border-white/10 bg-richblack-900 text-richblack-300">
+      {/* Ambient purple glow */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full bg-purple-500/10 blur-[120px]" />
 
-            <div className="w-full lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">Resources</h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Resources.map((ele, index) => (
-                  <div
-                    key={index}
-                    className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  >
-                    <Link to={`/${ele.split(" ").join("-").toLowerCase()}`}>{ele}</Link>
-                  </div>
-                ))}
-              </div>
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">Support</h1>
-              <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
-                <Link to="/help-center">Help Center</Link>
-              </div>
-            </div>
+      <div className="relative mx-auto w-11/12 max-w-maxContent">
+        {/* Top: brand + newsletter + links */}
+        <div className="grid grid-cols-1 gap-12 py-14 lg:grid-cols-12 lg:gap-8">
+          {/* Brand + newsletter */}
+          <div className="lg:col-span-5">
+            <Link to="/" className="flex items-center gap-2">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-gradient shadow-purple-glow text-lg font-bold text-white">
+                L
+              </span>
+              <span className="gradient-text text-2xl font-bold tracking-tight">
+                Learnity
+              </span>
+            </Link>
 
-            <div className="w-full lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">Plans</h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Plans.map((ele, index) => (
-                  <div
-                    key={index}
-                    className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  >
-                    <Link to={`/${ele.split(" ").join("-").toLowerCase()}`}>{ele}</Link>
-                  </div>
-                ))}
-              </div>
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">Community</h1>
-              <div className="flex flex-col gap-2 mt-2">
-                {Community.map((ele, index) => (
-                  <div
-                    key={index}
-                    className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  >
-                    {ele.external ? (
-                      <a href={ele.link} target="_blank" rel="noopener noreferrer">
-                        {ele.name}
-                      </a>
-                    ) : (
-                      <Link to={ele.link}>{ele.name}</Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+            <p className="mt-4 max-w-sm text-sm leading-6 text-richblack-400">
+              Empowering learners everywhere with in-demand skills, hands-on
+              projects, and mentorship from industry experts.
+            </p>
 
-          <div className="w-full lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
-            {FooterLink2.map((ele, i) => (
-              <div key={i} className="w-full lg:w-[30%] mb-7 lg:pl-0">
-                <h1 className="text-richblack-50 font-semibold text-[16px]">{ele.title}</h1>
-                <div className="flex flex-col gap-2 mt-2">
-                  {ele.links.map((link, index) => (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={link.link}>{link.title}</Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col lg:flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto pb-14 text-sm">
-        <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
-          <div className="flex flex-row flex-wrap">
-            {BottomFooter.map((ele, i) => (
-              <div
-                key={i}
-                className={`${
-                  BottomFooter.length - 1 === i
-                    ? ""
-                    : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                } px-3`}
+            {/* Newsletter */}
+            <div className="mt-6 max-w-sm">
+              <p className="text-sm font-semibold text-richblack-50">
+                Subscribe to our newsletter
+              </p>
+              <form
+                className="mt-3 flex items-center gap-2"
+                onSubmit={(e) => e.preventDefault()}
               >
-                <Link to={`/${ele.split(" ").join("-").toLocaleLowerCase()}`}>
-                  {ele}
-                </Link>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full rounded-lg border border-white/10 bg-richblack-800 px-4 py-2.5 text-sm text-richblack-25 placeholder:text-richblack-500 transition-all duration-200 focus:border-purple-400 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  aria-label="Subscribe"
+                  className="grid h-[42px] w-[46px] shrink-0 place-items-center rounded-lg bg-brand-gradient text-white shadow-purple-glow transition-transform duration-200 hover:scale-95"
+                >
+                  <FiArrowRight className="text-lg" />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Link columns */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
+            {linkColumns.map((col) => (
+              <div key={col.title}>
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-richblack-50">
+                  {col.title}
+                </h3>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {col.links.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-richblack-400 transition-colors duration-200 hover:text-purple-200"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
-          <div className="text-center mt-4 lg:mt-0">
-            Made with ❤️ © {new Date().getFullYear()} Studynotion
+        </div>
+
+        {/* Divider */}
+        <div className="h-px w-full bg-white/10" />
+
+        {/* Bottom bar */}
+        <div className="flex flex-col-reverse items-center justify-between gap-6 py-8 sm:flex-row">
+          <p className="text-center text-sm text-richblack-400">
+            © {new Date().getFullYear()} Learnity. Made with{" "}
+            <span className="text-pink-200">❤</span> for learners.
+          </p>
+
+          <div className="flex items-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-richblack-800 text-richblack-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-300/50 hover:bg-purple-900/30 hover:text-purple-100"
+              >
+                {s.icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

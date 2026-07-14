@@ -1,79 +1,105 @@
 // Icons Import
-import { FaArrowRight } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 // Image and Video Import
-import Banner from "../assets/Images/banner.mp4"
+import Banner from "../assets/Images/banner.mp4";
 // Component Imports
-import Footer from "../components/common/Footer"
-import ReviewSlider from "../components/common/ReviewSlider"
-import CTAButton from "../components/core/HomePage/Button"
-import CodeBlocks from "../components/core/HomePage/CodeBlocks"
-import ExploreMore from "../components/core/HomePage/ExploreMore"
-import HighlightText from "../components/core/HomePage/HighlightText"
-import InstructorSection from "../components/core/HomePage/InstructorSection"
-import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection"
-import TimelineSection from "../components/core/HomePage/TimelineSection"
-import FAQ from "../components/common/FAQ"
+import Footer from "../components/common/Footer";
+import ReviewSlider from "../components/common/ReviewSlider";
+import CTAButton from "../components/core/HomePage/Button";
+import CodeBlocks from "../components/core/HomePage/CodeBlocks";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
+import HighlightText from "../components/core/HomePage/HighlightText";
+import InstructorSection from "../components/core/HomePage/InstructorSection";
+import TimelineSection from "../components/core/HomePage/TimelineSection";
+import FAQ from "../components/common/FAQ";
 
 function Home() {
   return (
     <div>
-      
-      {/* Section 1 */}
-      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
-        {/* Become a Instructor Button */}
-        <Link to={"/signup"}>
-          <div className="group mx-auto mt-16 w-fit rounded-full bg-richblack-800 p-1 font-bold text-richblack-200 drop-shadow-[0_1.5px_rgba(255,255,255,0.25)] transition-all duration-200 hover:scale-95 hover:drop-shadow-none">
-            <div className="flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900">
-              <p>Become an Instructor</p>
-              <FaArrowRight />
+      {/* Section 1 - Asymmetric split hero */}
+      <div className="relative mx-auto w-11/12 max-w-maxContent text-white">
+        {/* Purple ambient glows */}
+        <div className="pointer-events-none absolute -top-20 -left-10 h-[400px] w-[400px] rounded-full bg-purple-500/25 blur-[120px]" />
+        <div className="pointer-events-none absolute top-40 right-0 h-[350px] w-[350px] rounded-full bg-violet-200/20 blur-[120px]" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 pt-16 pb-12 lg:pt-24 lg:pb-16">
+          {/* Left column - copy */}
+          <div className="flex flex-col items-start gap-6">
+            {/* Badge */}
+            <Link to={"/signup"}>
+              <div className="group flex items-center gap-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 px-5 py-2 text-sm font-semibold text-richblack-200 transition-all duration-200 hover:border-purple-200/40">
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-brand-gradient text-[10px] text-white">
+                  ★
+                </span>
+                <p>Become an Instructor</p>
+                <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+
+            {/* Heading */}
+            <h1 className="text-left text-4xl md:text-5xl font-bold leading-tight">
+              Empower Your Future with
+              <HighlightText text={"In-Demand Skills"} />
+            </h1>
+
+            {/* Sub Heading */}
+            <p className="text-left text-base md:text-lg font-medium text-richblack-300 max-w-[540px]">
+              With Learnity's online courses, you can learn at your own pace,
+              from anywhere in the world, and get access to a wealth of
+              resources, including hands-on projects, quizzes, and personalized
+              feedback from instructors.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="mt-2 flex flex-row gap-5">
+              <CTAButton active={true} linkto={"/signup"}>
+                Learn More
+              </CTAButton>
+              <CTAButton active={false} linkto={"/login"}>
+                Book a Demo
+              </CTAButton>
+            </div>
+
+            {/* Stats strip */}
+            <div className="mt-6 grid grid-cols-3 gap-4 w-full max-w-[540px]">
+              {[
+                { num: "500+", label: "Courses" },
+                { num: "50K+", label: "Learners" },
+                { num: "4.8★", label: "Avg. Rating" },
+              ].map((s, i) => (
+                <div key={i} className="glass-card px-4 py-5 text-center">
+                  <p className="text-2xl font-bold gradient-text">{s.num}</p>
+                  <p className="text-xs text-richblack-300 mt-1">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </Link>
 
-        {/* Heading */}
-        <div className="text-center text-4xl font-semibold">
-          Empower Your Future with
-          <HighlightText text={"Coding Skills"} />
-        </div>
-
-        {/* Sub Heading */}
-        <div className="-mt-3 w-[90%] text-center text-lg font-bold text-richblack-300">
-          With our online coding courses, you can learn at your own pace, from
-          anywhere in the world, and get access to a wealth of resources,
-          including hands-on projects, quizzes, and personalized feedback from
-          instructors.
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="mt-8 flex flex-row gap-7">
-          <CTAButton active={true} linkto={"/signup"}>
-            Learn More
-          </CTAButton>
-          <CTAButton active={false} linkto={"/login"}>
-            Book a Demo
-          </CTAButton>
-        </div>
-
-        {/* Video */}
-        <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
-          <video
-            className="shadow-[20px_20px_rgba(255,255,255)]"
-            muted
-            loop
-            autoPlay
-          >
-            <source src={Banner} type="video/mp4" />
-          </video>
+          {/* Right column - video card */}
+          <div className="relative">
+            <div className="glass-card-strong p-3 rounded-3xl animate-floaty shadow-purple-glow">
+              <video
+                className="rounded-2xl w-full"
+                muted
+                loop
+                autoPlay
+                playsInline
+                preload="none"
+              >
+                <source src={Banner} type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
 
         {/* Code Section 1  */}
-        <div>
+        <div className="mt-16 lg:mt-24">
           <CodeBlocks
             position={"lg:flex-row"}
             heading={
-              <div className="text-4xl font-semibold">
+              <div className="text-3xl md:text-4xl font-semibold">
                 Unlock your
                 <HighlightText text={"coding potential"} /> with our online
                 courses.
@@ -92,18 +118,18 @@ function Home() {
               link: "/signup",
               active: false,
             }}
-            codeColor={"text-yellow-25"}
+            codeColor={"text-purple-100"}
             codeblock={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
             backgroundGradient={<div className="codeblock1 absolute"></div>}
           />
         </div>
 
         {/* Code Section 2 */}
-        <div>
+        <div className="mt-16 lg:mt-24">
           <CodeBlocks
             position={"lg:flex-row-reverse"}
             heading={
-              <div className="w-[100%] text-4xl font-semibold lg:w-[50%]">
+              <div className="w-[100%] text-3xl md:text-4xl font-semibold lg:w-[50%]">
                 Start
                 <HighlightText text={"coding in seconds"} />
               </div>
@@ -128,41 +154,24 @@ function Home() {
         </div>
 
         {/* Explore Section */}
-        <ExploreMore />
+        <div className="mt-16 lg:mt-24">
+          <ExploreMore />
+        </div>
       </div>
 
       {/* Section 2 */}
-      <div className="bg-pure-greys-5 text-richblack-700">
-        <div className="homepage_bg h-[320px]">
-          {/* Explore Full Catagory Section */}
-          <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8">
-            <div className="lg:h-[150px]"></div>
-            <div className="flex flex-row gap-7 text-white lg:mt-8">
-              <CTAButton active={true} linkto={"/signup"}>
-                <div className="flex items-center gap-2">
-                  Explore Full Catalog
-                  <FaArrowRight />
-                </div>
-              </CTAButton>
-              <CTAButton active={false} linkto={"/login"}>
-                Learn More
-              </CTAButton>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 ">
+      <div className="bg-richblack-900 text-white">
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-16 pt-16 pb-8 lg:pt-24 lg:pb-10">
           {/* Job that is in Demand - Section 1 */}
-          <div className="mb-10 mt-[-100px] flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0">
-            <div className="text-4xl font-semibold lg:w-[45%] ">
+          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:gap-10">
+            <div className="text-3xl md:text-4xl font-semibold lg:w-[45%]">
               Get the skills you need for a{" "}
               <HighlightText text={"job that is in demand."} />
             </div>
-            <div className="flex flex-col items-start gap-10 lg:w-[40%]">
-              <div className="text-[16px]">
-                The modern StudyNotion dictates its own terms. Today, to
-                be a competitive specialist requires more than professional
-                skills.
+            <div className="flex flex-col items-start gap-6 lg:w-[40%]">
+              <div className="text-[16px] text-richblack-300">
+                The modern Learnity dictates its own terms. Today, to be a
+                competitive specialist requires more than professional skills.
               </div>
               <CTAButton active={true} linkto={"/signup"}>
                 <div className="">Learn More</div>
@@ -172,29 +181,34 @@ function Home() {
 
           {/* Timeline Section - Section 2 */}
           <TimelineSection />
-
-          {/* Learning Language Section - Section 3 */}
-          <LearningLanguageSection />
         </div>
       </div>
 
       {/* Section 3 */}
-      <div className="relative mx-auto my-20 flex max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-16 bg-richblack-900 pt-8 pb-8 lg:pt-10 lg:pb-10 text-white">
         {/* Become a instructor section */}
         <InstructorSection />
 
         {/* Reviws from Other Learner */}
-        <h1 className="text-center text-4xl font-semibold mt-8">
-          Happy & Satisfied Learners!
-        </h1>
-        <ReviewSlider />
+        <div className="flex w-full flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-3 w-full">
+            <h1 className="text-center text-3xl md:text-4xl font-semibold">
+              Happy & Satisfied Learners!
+            </h1>
+            <p className="text-center text-richblack-300 max-w-[600px]">
+              Real feedback from real learners who transformed their careers
+              with Learnity.
+            </p>
+          </div>
+          <ReviewSlider />
+        </div>
       </div>
 
       <FAQ />
       {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

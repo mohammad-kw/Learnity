@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import useIntersectionObserver from './useIntersectionObserver'; // Adjust the path as needed
+import React, { useEffect, useRef } from "react";
+import useIntersectionObserver from "./useIntersectionObserver"; // Adjust the path as needed
 
 const countUp = (element, start, end, duration, finalDisplay) => {
   let startTime = null;
@@ -23,7 +23,7 @@ const countUp = (element, start, end, duration, finalDisplay) => {
 };
 
 const parseCountValue = (count) => {
-  if (count.endsWith('K')) {
+  if (count.endsWith("K")) {
     return parseFloat(count) * 1000;
   } else {
     return parseFloat(count);
@@ -31,21 +31,21 @@ const parseCountValue = (count) => {
 };
 
 const getFinalDisplay = (count) => {
-  if (count.endsWith('K')) {
+  if (count.endsWith("K")) {
     return count;
   } else {
     return parseFloat(count).toLocaleString();
   }
 };
 
-const StatsComponent = () => {
-  const stats = [
-    { count: '5K', label: 'Active Students' },
-    { count: '10', label: 'Mentors' },
-    { count: '200', label: 'Courses' },
-    { count: '50', label: 'Awards' },
-  ];
+const stats = [
+  { count: "5K", label: "Active Students" },
+  { count: "10", label: "Mentors" },
+  { count: "200", label: "Courses" },
+  { count: "50", label: "Awards" },
+];
 
+const StatsComponent = () => {
   const elementsRef = useRef([]);
   const [isIntersecting, setElement] = useIntersectionObserver({
     threshold: 0.5, // Adjust as needed
@@ -63,7 +63,7 @@ const StatsComponent = () => {
   }, [isIntersecting]);
 
   return (
-    <div className="bg-richblack-700" ref={setElement}>
+    <div className="bg-richblack-700 py-10 lg:py-16" ref={setElement}>
       {/* Stats */}
       <div className="flex flex-col gap-10 justify-between w-11/12 max-w-maxContent text-white mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 text-center">
@@ -76,10 +76,13 @@ const StatsComponent = () => {
                 >
                   {parseCountValue(data.count).toLocaleString()}
                 </h1>
-                <span className="text-[30px] font-bold text-richblack-5"> + </span>
+                <span className="text-[30px] font-bold text-richblack-5">
+                  {" "}
+                  +{" "}
+                </span>
               </div>
               <div className="flex flex-row px-20">
-                <h2 className="font-semibold text-[16px] text-richblack-500">
+                <h2 className="font-semibold text-[16px] text-richblack-300">
                   {data.label}
                 </h2>
               </div>

@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
@@ -9,11 +10,12 @@ const contactUsRoute = require("./routes/Contact");
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const {cloudinaryConnect } = require("./config/cloudinary");
+const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
 const categoryRoutes = require("./routes/Category");
+const adminRoutes = require("./routes/Admin");
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -22,22 +24,25 @@ const PORT = process.env.PORT || 4000;
 database.connect();
 //middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))//for using postman
+app.use(express.urlencoded({ extended: true })); //for using postman
 app.use(cookieParser());
 app.use(
-	cors({
-		// origin:"http://localhost:3000",
-		origin:"https://studynotion-frontend-six-henna.vercel.app",
-		credentials:true,
-	})
-)
+  cors({
+    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+    credentials: true,
+  }),
+);
 
 app.use(
-	fileUpload({
-		useTempFiles:true,
-		tempFileDir:"/tmp",
-	})
-)
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+  }),
+);
+
+// Serve locally-uploaded images/videos (used when STORAGE is not cloudinary)
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 //cloudinary connection
 cloudinaryConnect();
 
@@ -49,17 +54,17 @@ app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactUsRoute);
 
 app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 //def route
 
 app.get("/", (req, res) => {
-	return res.json({
-		success:true,
-		message:'Your server is up and running....'
-	});
+  return res.json({
+    success: true,
+    message: "Your server is up and running....",
+  });
 });
 
 app.listen(PORT, () => {
-	console.log(`App is running at ${PORT}`)
-})
-
+  console.log(`App is running at ${PORT}`);
+});

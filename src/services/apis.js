@@ -8,21 +8,23 @@ export const endpoints = {
   LOGIN_API: BASE_URL + "/auth/login",
   RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
-}
+};
 
 // PROFILE ENDPOINTS
 export const profileEndpoints = {
   GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
   GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
   GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
-}
+  UNENROLL_COURSE_API: BASE_URL + "/profile/unenrollCourse",
+};
 
 // STUDENTS ENDPOINTS
 export const studentEndpoints = {
   COURSE_PAYMENT_API: BASE_URL + "/payment/capturePayment",
   COURSE_VERIFY_API: BASE_URL + "/payment/verifyPayment",
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
-}
+  COURSE_ENROLL_FREE_API: BASE_URL + "/payment/enrollCourseFree",
+};
 
 // COURSE ENDPOINTS
 export const courseEndpoints = {
@@ -43,26 +45,50 @@ export const courseEndpoints = {
     BASE_URL + "/course/getFullCourseDetails",
   LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
   CREATE_RATING_API: BASE_URL + "/course/createRating",
-}
+};
 
 // RATINGS AND REVIEWS
 export const ratingsEndpoints = {
   REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
-}
+};
 
 // CATAGORIES API
 export const categories = {
   CATEGORIES_API: BASE_URL + "/course/showAllCategories",
-}
+};
+
+// ADMIN API
+export const adminEndpoints = {
+  GET_ADMIN_STATS_API: BASE_URL + "/admin/stats",
+  GET_ALL_USERS_API: BASE_URL + "/admin/users",
+  DELETE_USER_API: BASE_URL + "/admin/deleteUser",
+  GET_ALL_COURSES_API: BASE_URL + "/admin/courses",
+  DELETE_COURSE_API: BASE_URL + "/admin/deleteCourse",
+  GET_ALL_MESSAGES_API: BASE_URL + "/admin/messages",
+  MARK_MESSAGE_READ_API: BASE_URL + "/admin/markMessageRead",
+  DELETE_MESSAGE_API: BASE_URL + "/admin/deleteMessage",
+  GET_ALL_REVIEWS_API: BASE_URL + "/admin/reviews",
+  DELETE_REVIEW_API: BASE_URL + "/admin/deleteReview",
+  GET_ALL_CATEGORIES_API: BASE_URL + "/admin/categories",
+  UPDATE_CATEGORY_API: BASE_URL + "/admin/updateCategory",
+  DELETE_CATEGORY_API: BASE_URL + "/admin/deleteCategory",
+  GET_ALL_INSTRUCTORS_API: BASE_URL + "/admin/instructors",
+  SET_INSTRUCTOR_APPROVAL_API: BASE_URL + "/admin/setInstructorApproval",
+  GET_ALL_ANNOUNCEMENTS_API: BASE_URL + "/admin/announcements",
+  CREATE_ANNOUNCEMENT_API: BASE_URL + "/admin/announcements",
+  UPDATE_ANNOUNCEMENT_API: BASE_URL + "/admin/announcements",
+  DELETE_ANNOUNCEMENT_API: BASE_URL + "/admin/announcements",
+  PUBLIC_ANNOUNCEMENTS_API: BASE_URL + "/admin/publicAnnouncements",
+};
 
 // CATALOG PAGE DATA
 export const catalogData = {
   CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
-}
+};
 // CONTACT-US API
 export const contactusEndpoint = {
   CONTACT_US_API: BASE_URL + "/reach/contact",
-}
+};
 
 // SETTINGS PAGE API
 export const settingsEndpoints = {
@@ -70,4 +96,4 @@ export const settingsEndpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
-}
+};

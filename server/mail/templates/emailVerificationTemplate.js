@@ -1,87 +1,28 @@
+const { baseLayout } = require("./_layout");
+
 const otpTemplate = (otp) => {
-	return `<!DOCTYPE html>
-	<html>
-	
-	<head>
-		<meta charset="UTF-8">
-		<title>OTP Verification Email</title>
-		<style>
-			body {
-				background-color: #ffffff;
-				font-family: Arial, sans-serif;
-				font-size: 16px;
-				line-height: 1.4;
-				color: #333333;
-				margin: 0;
-				padding: 0;
-			}
-	
-			.container {
-				max-width: 600px;
-				margin: 0 auto;
-				padding: 20px;
-				text-align: center;
-			}
-	
-			.logo {
-				max-width: 200px;
-				margin-bottom: 20px;
-			}
-	
-			.message {
-				font-size: 18px;
-				font-weight: bold;
-				margin-bottom: 20px;
-			}
-	
-			.body {
-				font-size: 16px;
-				margin-bottom: 20px;
-			}
-	
-			.cta {
-				display: inline-block;
-				padding: 10px 20px;
-				background-color: #FFD60A;
-				color: #000000;
-				text-decoration: none;
-				border-radius: 5px;
-				font-size: 16px;
-				font-weight: bold;
-				margin-top: 20px;
-			}
-	
-			.support {
-				font-size: 14px;
-				color: #999999;
-				margin-top: 20px;
-			}
-	
-			.highlight {
-				font-weight: bold;
-			}
-		</style>
-	
-	</head>
-	
-	<body>
-		<div class="container">
-			<a href="https://studynotion-frontend-six-henna.vercel.app"><img class="logo"
-					src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
-			<div class="message">OTP Verification Email</div>
-			<div class="body">
-				<p>Dear User,</p>
-				<p>Thank you for registering with StudyNotion. To complete your registration, please use the following OTP
-					(One-Time Password) to verify your account:</p>
-				<h2 class="highlight">${otp}</h2>
-				<p>This OTP is valid for 5 minutes. If you did not request this verification, please disregard this email.
-				Once your account is verified, you will have access to our platform and its features.</p>
-			</div>
-			<div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-					href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
-		</div>
-	</body>
-	
-	</html>`;
+  const body = `
+    <p style="margin:0 0 24px; font-size:15px; line-height:1.6; color:#a3a3c2;">
+      Thanks for signing up with Learnity! Use the one-time password below to complete your registration.
+    </p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" style="padding:8px 0 24px;">
+          <div style="display:inline-block; padding:18px 40px; background:rgba(124,58,237,0.15); border:1px solid rgba(168,85,247,0.4); border-radius:12px;">
+            <span style="font-size:34px; font-weight:700; letter-spacing:10px; color:#c4b5fd;">${otp}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p style="margin:0; font-size:14px; line-height:1.6; color:#a3a3c2;">
+      This code is valid for <strong style="color:#e2e8f0;">5 minutes</strong>. If you didn't request this, you can safely ignore this email.
+    </p>`;
+
+  return baseLayout({
+    title: "Verify your Learnity account",
+    heading: "Verify your email",
+    body,
+  });
 };
+
 module.exports = otpTemplate;

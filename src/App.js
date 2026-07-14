@@ -1,191 +1,205 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./pages/Home";
+import React, { Suspense, lazy } from "react";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/common/Navbar";
+import AnnouncementBanner from "./components/common/AnnouncementBanner";
 import OpenRoute from "./components/core/Auth/OpenRoute";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
-import UpdatePassword from "./pages/UpdatePassword";
-import VerifyEmail from "./pages/VerifyEmail";
-import Rateus from "./pages/Rateus";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import MyProfile from "./components/core/Dashboard/MyProfile";
-import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
-import Error from "./pages/Error";
-import Settings from "./components/core/Dashboard/Settings";
-import { useDispatch, useSelector } from "react-redux";
-import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
-import Cart from "./components/core/Dashboard/Cart";
+import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
-import AddCourse from "./components/core/Dashboard/AddCourse";
-import MyCourses from "./components/core/Dashboard/MyCourses";
-import EditCourse from "./components/core/Dashboard/EditCourse";
-import Catalog from "./pages/Catalog";
-import CourseDetails from "./pages/CourseDetails";
-import ViewCourse from "./pages/ViewCourse";
-import VideoDetails from "./components/core/ViewCourse/VideoDetails";
-import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import BackToTop from "./components/common/BackToTop";
-import PrivacyPolicy from "./pages/privacypolicy";
+import Spinner from "./components/common/Spinner";
 
-import CookiePolicy from "./pages/CookiePolicy";
-import Report from "./pages/Report";
-
-import TermsAndConditions from "./pages/TermsAndConditions";
-import Loading from "./components/common/Loading";
-import Project from "./pages/Project";
-import Chatbot from "./pages/Chatbot";
-
-import AddCategory from "./pages/AddCategory";
+// Lazily loaded routes (code-splitting)
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const UpdatePassword = lazy(() => import("./pages/UpdatePassword"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const MyProfile = lazy(() => import("./components/core/Dashboard/MyProfile"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Error = lazy(() => import("./pages/Error"));
+const Settings = lazy(() => import("./components/core/Dashboard/Settings"));
+const EnrolledCourses = lazy(
+  () => import("./components/core/Dashboard/EnrolledCourses"),
+);
+const Cart = lazy(() => import("./components/core/Dashboard/Cart"));
+const AddCourse = lazy(() => import("./components/core/Dashboard/AddCourse"));
+const MyCourses = lazy(() => import("./components/core/Dashboard/MyCourses"));
+const EditCourse = lazy(() => import("./components/core/Dashboard/EditCourse"));
+const Catalog = lazy(() => import("./pages/Catalog"));
+const CourseDetails = lazy(() => import("./pages/CourseDetails"));
+const AllCourses = lazy(() => import("./pages/AllCourses"));
+const ViewCourse = lazy(() => import("./pages/ViewCourse"));
+const VideoDetails = lazy(
+  () => import("./components/core/ViewCourse/VideoDetails"),
+);
+const Instructor = lazy(
+  () => import("./components/core/Dashboard/InstructorDashboard/Instructor"),
+);
+const PrivacyPolicy = lazy(() => import("./pages/privacypolicy"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
+const Report = lazy(() => import("./pages/Report"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const AddCategory = lazy(() => import("./pages/AddCategory"));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
+const ManageUsers = lazy(() => import("./pages/Admin/ManageUsers"));
+const ManageCourses = lazy(() => import("./pages/Admin/ManageCourses"));
+const ManageMessages = lazy(() => import("./pages/Admin/ManageMessages"));
+const ManageReviews = lazy(() => import("./pages/Admin/ManageReviews"));
+const ManageInstructors = lazy(() => import("./pages/Admin/ManageInstructors"));
+const ManageAnnouncements = lazy(
+  () => import("./pages/Admin/ManageAnnouncements"),
+);
 
 function App() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate a loading time for demonstration
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000); // Adjust the time as needed
-  }, []);
-
-  if (loading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
 
   return (
     <div className="flex-1 w-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="catalog/:catalogName" element={<Catalog />} />
-        <Route path="courses/:courseId" element={<CourseDetails />} />
-        <Route
-          path="signup"
-          element={
-            <OpenRoute>
-              <Signup />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <OpenRoute>
-              <Login />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="forgot-password"
-          element={
-            <OpenRoute>
-              <ForgotPassword />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="verify-email"
-          element={
-            <OpenRoute>
-              <VerifyEmail />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="update-password/:id"
-          element={
-            <OpenRoute>
-              <UpdatePassword />
-            </OpenRoute>
-          }
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/rateus" element={<Rateus />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-        <Route path="/cookie-policy" element={<CookiePolicy />} />
-        <Route path="/report" element={<Report />} />
-
-        <Route path="/terms" element={<TermsAndConditions />} />
-        <Route
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        >
-          <Route path="dashboard/my-profile" element={<MyProfile />} />
-          <Route path="dashboard/settings" element={<Settings />} />
-          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
-            <>
-              <Route path="dashboard/cart" element={<Cart />} />
-              <Route
-                path="dashboard/enrolled-courses"
-                element={<EnrolledCourses />}
-              />
-            </>
-          )}
-          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
-            <>
-              <Route path="dashboard/instructor" element={<Instructor />} />
-              <Route path="dashboard/add-course" element={<AddCourse />} />
-              <Route path="dashboard/my-courses" element={<MyCourses />} />
-              <Route
-                path="dashboard/edit-course/:courseId"
-                element={<EditCourse />}
-              />
-            </>
-          )}
-        </Route>
-        <Route
-          element={
-            <PrivateRoute>
-              <ViewCourse />
-            </PrivateRoute>
-          }
-        >
-          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
-            <>
-              <Route
-                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
-                element={<VideoDetails />}
-              />
-            </>
-          )}
-        </Route>
-
-{/*                                */}
-        {/* Conditionally render the admin route */}
-          {user?.accountType === ACCOUNT_TYPE.ADMIN && (
+      <AnnouncementBanner />
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="courses" element={<AllCourses />} />
+          <Route path="catalog/:catalogName" element={<Catalog />} />
+          <Route path="courses/:courseId" element={<CourseDetails />} />
           <Route
-            path="createCategory"
+            path="signup"
             element={
-              <PrivateRoute>
-                <AddCategory />
-              </PrivateRoute>
+              <OpenRoute>
+                <Signup />
+              </OpenRoute>
             }
           />
-        )}
-{/*                              */}
+          <Route
+            path="login"
+            element={
+              <OpenRoute>
+                <Login />
+              </OpenRoute>
+            }
+          />
+          <Route
+            path="forgot-password"
+            element={
+              <OpenRoute>
+                <ForgotPassword />
+              </OpenRoute>
+            }
+          />
+          <Route
+            path="verify-email"
+            element={
+              <OpenRoute>
+                <VerifyEmail />
+              </OpenRoute>
+            }
+          />
+          <Route
+            path="update-password/:id"
+            element={
+              <OpenRoute>
+                <UpdatePassword />
+              </OpenRoute>
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/report" element={<Report />} />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          >
+            <Route path="dashboard/my-profile" element={<MyProfile />} />
+            <Route path="dashboard/settings" element={<Settings />} />
+            {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+              <>
+                <Route path="dashboard/cart" element={<Cart />} />
+                <Route
+                  path="dashboard/enrolled-courses"
+                  element={<EnrolledCourses />}
+                />
+              </>
+            )}
+            {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+              <>
+                <Route path="dashboard/instructor" element={<Instructor />} />
+                <Route path="dashboard/add-course" element={<AddCourse />} />
+                <Route path="dashboard/my-courses" element={<MyCourses />} />
+                <Route
+                  path="dashboard/edit-course/:courseId"
+                  element={<EditCourse />}
+                />
+              </>
+            )}
+            {user?.accountType === ACCOUNT_TYPE.ADMIN && (
+              <>
+                <Route path="dashboard/admin" element={<AdminDashboard />} />
+                <Route
+                  path="dashboard/manage-users"
+                  element={<ManageUsers />}
+                />
+                <Route
+                  path="dashboard/manage-courses"
+                  element={<ManageCourses />}
+                />
+                <Route
+                  path="dashboard/manage-messages"
+                  element={<ManageMessages />}
+                />
+                <Route
+                  path="dashboard/manage-reviews"
+                  element={<ManageReviews />}
+                />
+                <Route
+                  path="dashboard/manage-instructors"
+                  element={<ManageInstructors />}
+                />
+                <Route
+                  path="dashboard/manage-announcements"
+                  element={<ManageAnnouncements />}
+                />
+                <Route
+                  path="dashboard/add-category"
+                  element={<AddCategory />}
+                />
+              </>
+            )}
+          </Route>
+          <Route
+            element={
+              <PrivateRoute>
+                <ViewCourse />
+              </PrivateRoute>
+            }
+          >
+            {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+              <>
+                <Route
+                  path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                  element={<VideoDetails />}
+                />
+              </>
+            )}
+          </Route>
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Suspense>
       <BackToTop />
-      <Chatbot/>
     </div>
   );
 }

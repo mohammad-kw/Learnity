@@ -1,13 +1,12 @@
-import { FaCheck } from "react-icons/fa"
-import { useSelector } from "react-redux"
+import { FaCheck } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
-import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm"
-import CourseInformationForm from "./CourseInformation/CourseInformationForm"
-import PublishCourse from "./PublishCourse"
-
+import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
+import CourseInformationForm from "./CourseInformation/CourseInformationForm";
+import PublishCourse from "./PublishCourse";
 
 export default function RenderSteps() {
-  const { step } = useSelector((state) => state.course)
+  const { step } = useSelector((state) => state.course);
 
   const steps = [
     {
@@ -22,69 +21,59 @@ export default function RenderSteps() {
       id: 3,
       title: "Publish",
     },
-  ]
+  ];
 
   return (
     <>
       <div className="relative mb-2 flex w-full justify-center">
         {steps.map((item) => (
-          <>
-            <div
-              className="flex flex-col items-center "
-              key={item.id}
-            >
-              <button
-                className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px] ${
-                  step === item.id
-                    ? "border-yellow-50 bg-yellow-900 text-yellow-50"
+          <div className="flex items-center" key={item.id}>
+            <button
+              className={`grid aspect-square w-[40px] cursor-default place-items-center rounded-full border transition-all duration-300 ${
+                step === item.id
+                  ? "border-purple-300 bg-purple-900/60 text-purple-100 shadow-purple-glow"
+                  : step > item.id
+                    ? "border-purple-300 bg-purple-300 text-richblack-900"
                     : "border-richblack-700 bg-richblack-800 text-richblack-300"
-                } ${step > item.id && "bg-yellow-50 text-yellow-50"}} `}
-              >
-                {step > item.id ? (
-                  <FaCheck className="font-bold text-richblack-900" />
-                ) : (
-                  item.id
-                )}
-              </button>
-              
-            </div>
+              }`}
+            >
+              {step > item.id ? (
+                <FaCheck className="font-bold text-richblack-900" />
+              ) : (
+                item.id
+              )}
+            </button>
             {item.id !== steps.length && (
-              <>
-                <div
-                  className={`h-[calc(34px/2)] w-[33%]  border-dashed border-b-2 ${
-                  step > item.id  ? "border-yellow-50" : "border-richblack-500"
-                } `}
-                ></div>
-              </>
+              <div
+                className={`h-0.5 w-[80px] border-b-2 border-dashed transition-all duration-300 sm:w-[120px] ${
+                  step > item.id ? "border-purple-300" : "border-richblack-600"
+                }`}
+              ></div>
             )}
-          </>
+          </div>
         ))}
       </div>
 
-      <div className="relative mb-16 flex w-full select-none justify-between">
+      <div className="relative mb-12 flex w-full select-none justify-center">
         {steps.map((item) => (
-          <>
-            <div
-              className="flex min-w-[130px] flex-col items-center gap-y-2"
-              key={item.id}
+          <div
+            className="flex w-[120px] flex-col items-center sm:w-[160px]"
+            key={item.id}
+          >
+            <p
+              className={`text-sm font-medium ${
+                step >= item.id ? "text-richblack-5" : "text-richblack-500"
+              }`}
             >
-              
-              <p
-                className={`text-sm ${
-                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
-                }`}
-              >
-                {item.title}
-              </p>
-            </div>
-            
-          </>
+              {item.title}
+            </p>
+          </div>
         ))}
       </div>
       {/* Render specific component based on current step */}
       {step === 1 && <CourseInformationForm />}
       {step === 2 && <CourseBuilderForm />}
-      {step === 3 &&  <PublishCourse /> }
+      {step === 3 && <PublishCourse />}
     </>
-  )
+  );
 }

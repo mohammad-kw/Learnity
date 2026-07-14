@@ -1,37 +1,37 @@
-import { useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { updateProfile } from "../../../../services/operations/SettingsAPI"
-import IconBtn from "../../../common/IconBtn"
+import { updateProfile } from "../../../../services/operations/SettingsAPI";
+import IconBtn from "../../../common/IconBtn";
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"];
 
 export default function EditProfile() {
-  const { user } = useSelector((state) => state.profile)
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const submitProfileForm = async (data) => {
     // console.log("Form Data - ", data)
     try {
-      dispatch(updateProfile(token, data))
+      dispatch(updateProfile(token, data));
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      console.log("ERROR MESSAGE - ", error.message);
     }
-  }
+  };
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+        <div className="my-10 flex flex-col gap-y-6 glass-card p-8 px-12">
           <h2 className="text-lg font-semibold text-richblack-5">
             Profile Information
           </h2>
@@ -121,7 +121,7 @@ export default function EditProfile() {
                     <option key={i} value={ele}>
                       {ele}
                     </option>
-                  )
+                  );
                 })}
               </select>
               {errors.gender && (
@@ -184,15 +184,19 @@ export default function EditProfile() {
         <div className="flex justify-end gap-2">
           <button
             onClick={() => {
-              navigate("/dashboard/my-profile")
+              navigate("/dashboard/my-profile");
             }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+            className="flex h-10 w-[110px] cursor-pointer items-center justify-center rounded-md bg-richblack-700 text-sm font-semibold text-richblack-50 transition-all duration-200 hover:scale-[0.98]"
           >
             Cancel
           </button>
-          <IconBtn type="submit" text="Save" />
+          <IconBtn
+            type="submit"
+            text="Save"
+            customClasses="h-10 w-[110px] justify-center !p-0 text-sm !shadow-none"
+          />
         </div>
       </form>
     </>
-  )
+  );
 }

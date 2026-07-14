@@ -1,30 +1,35 @@
-import * as Icons from "react-icons/vsc"
-import { useDispatch } from "react-redux"
-import { NavLink, matchPath, useLocation } from "react-router-dom"
+import * as Icons from "react-icons/vsc";
+import { useDispatch } from "react-redux";
+import { NavLink, matchPath, useLocation } from "react-router-dom";
 
-import { resetCourseState } from "../../../slices/courseSlice"
+import { resetCourseState } from "../../../slices/courseSlice";
 
-export default function SidebarLink({ link, iconName }) {
-  const Icon = Icons[iconName]
-  const location = useLocation()
-  const dispatch = useDispatch()
+export default function SidebarLink({ link, iconName, onClick }) {
+  const Icon = Icons[iconName];
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const matchRoute = (route) => {
-    return matchPath({ path: route }, location.pathname)
-  }
+    return matchPath({ path: route }, location.pathname);
+  };
+
+  const handleClick = () => {
+    dispatch(resetCourseState());
+    onClick?.();
+  };
 
   return (
     <NavLink
       to={link.path}
-      onClick={() => dispatch(resetCourseState())}
+      onClick={handleClick}
       className={`relative px-8 py-2 text-sm font-medium ${
         matchRoute(link.path)
-          ? "bg-yellow-800 text-yellow-50"
+          ? "bg-purple-900/40 text-purple-100"
           : "bg-opacity-0 text-richblack-300"
       } transition-all duration-200`}
     >
       <span
-        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-yellow-50 ${
+        className={`absolute left-0 top-0 h-full w-[0.15rem] bg-purple-300 ${
           matchRoute(link.path) ? "opacity-100" : "opacity-0"
         }`}
       ></span>
@@ -34,5 +39,5 @@ export default function SidebarLink({ link, iconName }) {
         <span>{link.name}</span>
       </div>
     </NavLink>
-  )
+  );
 }

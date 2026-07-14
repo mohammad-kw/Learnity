@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function VerifyEmail() {
   const [otp, setOtp] = useState("");
-  const { signupData, loading } = useSelector((state) => state.auth);
+  const { signupData, loading, devOtp } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,8 +41,8 @@ function VerifyEmail() {
         password,
         confirmPassword,
         otp,
-        navigate
-      )
+        navigate,
+      ),
     );
   };
 
@@ -60,6 +60,20 @@ function VerifyEmail() {
           <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">
             A verification code has been sent to you. Enter the code below
           </p>
+          {devOtp && (
+            <button
+              type="button"
+              onClick={() => setOtp(devOtp)}
+              className="mb-4 w-full rounded-lg border border-purple-400/40 bg-purple-400/10 px-4 py-3 text-left transition-all duration-200 hover:bg-purple-400/20"
+            >
+              <p className="text-xs text-richblack-200">
+                Didn&apos;t get the email? Use this code (click to auto-fill):
+              </p>
+              <p className="mt-1 text-2xl font-bold tracking-[0.3em] text-purple-100">
+                {devOtp}
+              </p>
+            </button>
+          )}
           <form onSubmit={handleVerifyAndSignup}>
             <OtpInput
               value={otp}
@@ -82,7 +96,7 @@ function VerifyEmail() {
             />
             <button
               type="submit"
-              className="w-full bg-yellow-50 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblack-900"
+              className="w-full bg-brand-gradient py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-white shadow-purple-glow transition-all duration-200 hover:scale-[0.98]"
             >
               Verify Email
             </button>

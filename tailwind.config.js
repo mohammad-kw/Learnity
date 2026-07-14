@@ -123,17 +123,70 @@ module.exports = {
         800: "#171717",
         900: "#141414",
       },
+      // ===== Learnity brand palette (purple) =====
+      purple: {
+        5: "#F5F0FF",
+        25: "#E9DDFF",
+        50: "#D6C2FF",
+        100: "#BFA2FF",
+        200: "#A97FFF",
+        300: "#9257FF",
+        400: "#7C3AED",
+        500: "#6D28D9",
+        600: "#5B21B6",
+        700: "#4C1D95",
+        800: "#3B1580",
+        900: "#2A0E5C",
+      },
+      violet: {
+        5: "#F3F0FF",
+        50: "#C4B5FD",
+        100: "#A78BFA",
+        200: "#8B5CF6",
+        300: "#7C3AED",
+        400: "#6D28D9",
+        500: "#5B21B6",
+      },
     },
     extend: {
       maxWidth: {
         maxContent: "1260px",
-        maxContentTab: "650px"
+        maxContentTab: "650px",
       },
-      screens:{
-        md:'930px',
-      }
+      screens: {
+        md: "930px",
+      },
+      backgroundImage: {
+        "brand-gradient":
+          "linear-gradient(135deg, #7C3AED 0%, #A97FFF 50%, #6D28D9 100%)",
+        "brand-radial":
+          "radial-gradient(circle at top left, rgba(124,58,237,0.35), transparent 60%)",
+        "glass-gradient":
+          "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))",
+      },
+      boxShadow: {
+        glass: "0 8px 32px 0 rgba(31, 12, 74, 0.37)",
+        "purple-glow": "0 0 40px rgba(124, 58, 237, 0.45)",
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
+      keyframes: {
+        floaty: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        floaty: "floaty 6s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 8s ease infinite",
+      },
     },
   },
-  variants:{},
+  variants: {},
   plugins: [],
 };

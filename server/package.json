@@ -1,7 +1,8 @@
 {
-  "name": "server",
+  "name": "learnity-server",
   "version": "1.0.0",
   "main": "index.js",
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -11,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.6",
@@ -20,6 +20,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-fileupload": "^1.5.1",
+    "ffprobe-static": "^3.1.0",
+    "get-video-duration": "^5.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.8.1",
     "node-schedule": "^2.1.1",

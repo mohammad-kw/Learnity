@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import CountryCode from "../../data/countrycode.json"
-import { apiConnector } from "../../services/apiconnector"
-import { contactusEndpoint } from "../../services/apis"
+import CountryCode from "../../data/countrycode.json";
+import { apiConnector } from "../../services/apiconnector";
+import { contactusEndpoint } from "../../services/apis";
 
 const ContactUsForm = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitSuccessful },
-  } = useForm()
+  } = useForm();
 
   const submitContactForm = async (data) => {
     // console.log("Form Data - ", data)
     try {
-      setLoading(true)
-      const res = await apiConnector(
-        "POST",
-        contactusEndpoint.CONTACT_US_API,
-        data
-      )
+      setLoading(true);
+      await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
       // console.log("Email Res - ", res)
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
-      setLoading(false)
+      console.log("ERROR MESSAGE - ", error.message);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -39,15 +35,14 @@ const ContactUsForm = () => {
         lastname: "",
         message: "",
         phoneNo: "",
-      })
+      });
     }
-  }, [reset, isSubmitSuccessful])
+  }, [reset, isSubmitSuccessful]);
 
   return (
     <form
-      className="flex flex-col gap-7"
+      className="flex w-full flex-col gap-6"
       onSubmit={handleSubmit(submitContactForm)}
-      style={{marginTop: "30px"}}
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
@@ -63,7 +58,7 @@ const ContactUsForm = () => {
             {...register("firstname", { required: true })}
           />
           {errors.firstname && (
-            <span className="-mt-1 text-[12px] text-yellow-100">
+            <span className="-mt-1 text-[12px] text-pink-200">
               Please enter your name.
             </span>
           )}
@@ -96,7 +91,7 @@ const ContactUsForm = () => {
           {...register("email", { required: true })}
         />
         {errors.email && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
+          <span className="-mt-1 text-[12px] text-pink-200">
             Please enter your Email address.
           </span>
         )}
@@ -120,9 +115,9 @@ const ContactUsForm = () => {
               {CountryCode.map((ele, i) => {
                 return (
                   <option key={i} value={ele.code}>
-                    {ele.code} -{ele.country}
+                    {ele.code}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
@@ -145,7 +140,7 @@ const ContactUsForm = () => {
           </div>
         </div>
         {errors.phoneNo && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
+          <span className="-mt-1 text-[12px] text-pink-200">
             {errors.phoneNo.message}
           </span>
         )}
@@ -159,13 +154,13 @@ const ContactUsForm = () => {
           name="message"
           id="message"
           cols="30"
-          rows="7"
+          rows="1"
           placeholder="Enter your message here"
-          className="form-style"
+          className="form-style resize-none"
           {...register("message", { required: true })}
         />
         {errors.message && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
+          <span className="-mt-1 text-[12px] text-pink-200">
             Please enter your Message.
           </span>
         )}
@@ -174,7 +169,7 @@ const ContactUsForm = () => {
       <button
         disabled={loading}
         type="submit"
-        className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
+        className={`rounded-md bg-brand-gradient px-6 py-3 text-center text-[13px] font-bold text-white shadow-purple-glow 
          ${
            !loading &&
            "transition-all duration-200 hover:scale-95 hover:shadow-none"
@@ -183,7 +178,7 @@ const ContactUsForm = () => {
         Send Message
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default ContactUsForm
+export default ContactUsForm;
