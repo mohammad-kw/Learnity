@@ -68,7 +68,9 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             >
               {user && course?.studentsEnrolled.includes(user?._id)
                 ? "Go To Course"
-                : "Buy Now"}
+                : process.env.REACT_APP_PAYMENTS_ENABLED === "true"
+                ? "Buy Now"
+                : "Enroll Now"}
             </button>
             {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
               <button onClick={handleAddToCart} className="blackButton">

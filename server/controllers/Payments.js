@@ -16,6 +16,12 @@ const CourseProgress = require("../models/CourseProgress");
 exports.capturePayment = async (req, res) => {
   const { courses } = req.body;
   const userId = req.user.id;
+  if (!instance) {
+    return res.status(503).json({
+      success: false,
+      message: "Payment gateway is not configured on the server.",
+    });
+  }
   if (courses.length === 0) {
     return res.json({ success: false, message: "Please Provide Course ID" });
   }
