@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RatingStars from "../../common/RatingStars";
 import GetAvgRating from "../../../utils/avgRating";
 import { Link } from "react-router-dom";
+import CourseThumbnail from "../../common/CourseThumbnail";
 
 const Course_Card = ({ course, Height }) => {
   const [avgReviewCount, setAvgReviewCount] = useState(0);
@@ -16,9 +17,9 @@ const Course_Card = ({ course, Height }) => {
       <Link to={`/courses/${course._id}`}>
         <div className="glass-card p-3 transition-all duration-300 hover:scale-[1.03] hover:border-purple-200/40 hover:shadow-purple-glow">
           <div className="rounded-xl overflow-hidden">
-            <img
+            <CourseThumbnail
               src={course?.thumbnail}
-              alt="course thumnail"
+              alt={course?.courseName}
               className={`${Height} w-full rounded-xl object-cover transition-transform duration-300 hover:scale-105`}
             />
           </div>

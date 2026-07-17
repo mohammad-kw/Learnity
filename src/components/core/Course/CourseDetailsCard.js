@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { addToCart } from "../../../slices/cartSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
+import CourseThumbnail from "../../common/CourseThumbnail";
 
 function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const { user } = useSelector((state) => state.profile);
@@ -47,7 +48,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
     <>
       <div className={`flex flex-col gap-4 glass-card p-4 text-richblack-5`}>
         {/* Course Image */}
-        <img
+        <CourseThumbnail
           src={ThumbnailImage}
           alt={course?.courseName}
           className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
@@ -69,8 +70,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
               {user && course?.studentsEnrolled.includes(user?._id)
                 ? "Go To Course"
                 : process.env.REACT_APP_PAYMENTS_ENABLED === "true"
-                ? "Buy Now"
-                : "Enroll Now"}
+                  ? "Buy Now"
+                  : "Enroll Now"}
             </button>
             {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
               <button onClick={handleAddToCart} className="blackButton">

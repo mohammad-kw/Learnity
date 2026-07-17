@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import RatingStars from "../components/common/RatingStars";
+import CourseThumbnail from "../components/common/CourseThumbnail";
 import CourseAccordionBar from "../components/core/Course/CourseAccordionBar";
 import CourseDetailsCard from "../components/core/Course/CourseDetailsCard";
 import { formatDate } from "../services/formatDate";
@@ -131,10 +132,10 @@ function CourseDetails() {
           <div className="mx-auto grid max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-12 xl:max-w-[810px]">
             <div className="relative block max-h-[30rem] lg:hidden">
               <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
-              <img
+              <CourseThumbnail
                 src={thumbnail}
-                alt="course thumbnail"
-                className="aspect-auto w-full"
+                alt={courseName}
+                className="aspect-auto w-full min-h-[200px]"
               />
             </div>
             <div
